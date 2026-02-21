@@ -3,6 +3,8 @@ import { Routes, Route, Link } from "react-router-dom"
 import axios from "axios"
 import Status from "./Status"
 
+const API_BASE = "https://codebase-qa-3m62.onrender.com"
+
 function App() {
   const [question, setQuestion] = useState("")
   const [answer, setAnswer] = useState("")
@@ -30,7 +32,7 @@ function App() {
       setIsUploading(true)
 
       await axios.post(
-        "http://localhost:5000/upload",
+        `${API_BASE}/upload`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       )
@@ -49,7 +51,7 @@ function App() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/ask",
+        `${API_BASE}/ask`,
         { question }
       )
 
